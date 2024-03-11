@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+
+
+:root{  /*Root scope for the declaration of variables (a.k.a) 'custom properties'*/
+    --line-border-fill: #3489db;
+    --line-border-empty: #e0e0e0;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f6f7fb;
+    font-family: 'Muli', sans-serif ;
+    display: flex; 
+    
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.container{
+    text-align: center;
+    color: black;
+}
+
+.progress-container::before{ /* ::before is a selector to create the grey progress bar;*/
+    content: '';  /*when ever you use before or after important to allow us see the grey line*/
+    background-color: var(--line-border-empty); /*color variable declared in root scope*/
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    height: 4px;
+    width: 100%;
+    z-index: -1; /*Position the grey progress line behind the circles*/
+    /* No transition needed because it is just a grey line behind*/
+}
+
+.progress{ 
+    background-color: var(--line-border-fill);
+    position: absolute; /*within the progress container which is positioned relative*/
+    top: 50%; /*In the middle vertically*/
+    transform: translateY(-50%);/*Puts the middle of the line exactly in the middle of the container*/
+    left: 0;
+    height: 4px;
+    width: 0%;
+    transition: 0.4s ease;
+    z-index: -1; /*Position the grey progress line behind the circles*/
+     
+
+}
+.progress-container{
+    display: flex;
+    justify-content: space-between;/*Puts remaining space in the container between the elements*/
+     
+    position: relative;/*To position things inside of it absolute*/
+    margin-bottom: 50px;
+    max-width: 100%;
+    width: 350px;
+
+}
+
+.circle {
+    background-color: #fff;
+    color: #999;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex; /*center aligns the number objects in the circles*/
+    align-items: center;/*vertically aligns the numbers vertically center*/
+    justify-content: center;
+    border: 3px solid var(--line-border-empty);
+    transition: 0.4s ease;
+}
+  
+.circle.active{
+    border-color: var(--line-border-fill);    
+    background-color: #fff;
+}
+
+.btn{
+    background-color: var(--line-border-fill);
+    color: #fff; /* Sets the text color inside the buttons */
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 8px/*Top and Bottom*/ 30px/*Left and right*/;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.btn:active{
+    transform: scale(0.95); /*For slight shrinking/toggle effect when you click the button */
+}
+
+.btn:focus{
+    outline: 0;
+}
+
+.btn:disabled{
+    background-color: var(--line-border-empty);
+    cursor: not-allowed;
+}
